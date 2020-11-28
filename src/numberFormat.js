@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
 // import PropTypes from 'prop-types';
 // import MaskedInput from 'react-text-mask';
-import NumberFormat from 'react-number-format';
+import NumberFormat from 'react-number-format'
 // import Input from '@material-ui/core/Input';
 // import InputLabel from '@material-ui/core/InputLabel';
-import TextField from './textField';
+import TextField from './textField'
 // import FormControl from '@material-ui/core/FormControl';
 
 const NumberFormatCustom = ({ inputRef, onChange, ...props }) => (
@@ -16,25 +16,27 @@ const NumberFormatCustom = ({ inputRef, onChange, ...props }) => (
       onChange({
         target: {
           name: props.name,
-          value,
-        },
-      });
+          value
+        }
+      })
     }}
-    thousandSeparator="."
+    thousandSeparator=','
     isNumericString
     allowNegative={false}
     decimalSeparator={props.decimalSeparator || false}
+    decimalScale={props.decimalScale || 0}
+    allowNegative={props.allowNegative || false}
     prefix={props.prefix}
   />
-);
+)
 
 const CommonNumberFormat = (props) => (
   <TextField
     {...props}
     InputProps={{
-      inputComponent: NumberFormatCustom,
+      inputComponent: NumberFormatCustom
     }}
   />
-);
+)
 
-export default CommonNumberFormat;
+export default CommonNumberFormat
