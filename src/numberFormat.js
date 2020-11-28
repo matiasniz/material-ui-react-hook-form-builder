@@ -8,35 +8,35 @@ import NumberFormat from 'react-number-format'
 import TextField from './textField'
 // import FormControl from '@material-ui/core/FormControl';
 
-const NumberFormatCustom = ({ inputRef, onChange, ...props }) => (
-  <NumberFormat
-    {...props}
-    getInputRef={inputRef}
-    onValueChange={({ value }) => {
-      onChange({
-        target: {
-          name: props.name,
-          value
-        }
-      })
-    }}
-    thousandSeparator=','
-    isNumericString
-    allowNegative={false}
-    decimalSeparator={props.decimalSeparator || false}
-    decimalScale={props.decimalScale || 0}
-    allowNegative={props.allowNegative || false}
-    prefix={props.prefix}
-  />
-)
+const CommonNumberFormat = (props) => {
+  const { format } = props
+  const otherProps = { ...props }
+  delete otherProps.format
+  const NumberFormatCustom = ({ inputRef, onChange, ...props }) => (
+    <NumberFormat
+      {...format}
+      getInputRef={inputRef}
+      onValueChange={({ value }) => {
+        onChange({
+          target: {
+            name: props.name,
+            value
+          }
+        })
+      }}
+      isNumericString
+      prefix={props.prefix}
+    />
+  )
 
-const CommonNumberFormat = (props) => (
-  <TextField
-    {...props}
-    InputProps={{
-      inputComponent: NumberFormatCustom
-    }}
-  />
-)
+  return (
+    <TextField
+      {...otherProps}
+      InputProps={{
+        inputComponent: NumberFormatCustom
+      }}
+    />
+  )
+}
 
 export default CommonNumberFormat
