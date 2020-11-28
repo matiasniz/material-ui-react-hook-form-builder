@@ -1,9 +1,9 @@
 // Libraries
-import { string } from 'yup';
+import { string } from 'yup'
 
 // Icons
-import CategoryIcon from '@material-ui/icons/Category';
-import DescriptionIcon from '@material-ui/icons/Description';
+import CategoryIcon from '@material-ui/icons/Category'
+import DescriptionIcon from '@material-ui/icons/Description'
 
 export default {
   name: {
@@ -11,7 +11,7 @@ export default {
     name: 'name',
     label: 'Name',
     icon: CategoryIcon,
-    validation: string(),
+    validation: string()
   },
   description: {
     type: 'textarea',
@@ -20,6 +20,6 @@ export default {
     validation: string(),
     icon: DescriptionIcon,
     multiline: true,
-    rows: 4,
-  },
-};
+    rows: 4
+  }
+}
