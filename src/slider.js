@@ -70,7 +70,9 @@ const CommonSlider = ({
 
   const handleChange = (event, newValue) => {
     setInputValue(newValue)
-    onChange(event.target.value, newValue)
+    if (onChange) {
+      onChange(event.target.value, newValue)
+    }
   }
 
   useEffect(() => {
