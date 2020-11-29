@@ -70,7 +70,7 @@ const CommonSlider = ({
 
   const handleChange = (event, newValue) => {
     setInputValue(newValue)
-    onChange(evt.target.value, newValue)
+    onChange(event.target.value, newValue)
   }
 
   useEffect(() => {
@@ -88,7 +88,7 @@ const CommonSlider = ({
   }, [setValue, name, inputValue])
 
   return (
-    <Box flexDirection='row' display='flex' className={classes.root}>
+    <Box flexDirection='column' display='flex' className={classes.root}>
       <Typography id='range-slider' gutterBottom>
         {label || name}
       </Typography>
