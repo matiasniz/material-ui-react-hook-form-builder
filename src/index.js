@@ -20,6 +20,7 @@ import Typography from '@material-ui/core/Typography'
 import Checkbox from './checkbox'
 import Radio from './radio'
 import Select from './select'
+import Slider from './slider'
 import TextField from './textField'
 import NumberFormat from './numberFormat'
 
@@ -41,6 +42,8 @@ const buildInput = ({ component = null, ...props }) => {
       return <Checkbox idx={props.key} {...props} />
     case 'select':
       return <Select idx={props.key} {...props} />
+    case 'slider':
+      return <Slider idx={props.key} {...props} />
     case 'component':
       return component ? component(props) : '_____NO_COMPONENT______'
     default:

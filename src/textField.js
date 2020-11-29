@@ -1,18 +1,18 @@
 // Libraries
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
+import clsx from 'clsx'
 
 // Material Components
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Tooltip from '@material-ui/core/Tooltip';
+import TextField from '@material-ui/core/TextField'
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Tooltip from '@material-ui/core/Tooltip'
 
 // Icons
-import Error from '@material-ui/icons/Error';
+import Error from '@material-ui/icons/Error'
 
 // Styles
-import useStyles from './styles';
+import useStyles from './styles'
 
 const CommonFormTextField = ({
   name,
@@ -34,29 +34,29 @@ const CommonFormTextField = ({
   error,
   ...props
 }) => {
-  const classes = useStyles();
-  const [inputValue, setInputValue] = useState(value || '');
+  const classes = useStyles()
+  const [inputValue, setInputValue] = useState(value || '')
 
   const handleChange = (evt) => {
-    setInputValue(evt.target.value);
+    setInputValue(evt.target.value)
     if (onChange) {
-      onChange(evt.target.value, getValues);
+      onChange(evt.target.value, getValues)
     }
-  };
+  }
 
   useEffect(() => {
-    register && register({ name, required });
-  }, [register, name, required]);
+    register && register({ name, required })
+  }, [register, name, required])
 
   useEffect(() => {
     if (value !== undefined && value !== null) {
-      setInputValue(value);
+      setInputValue(value)
     }
-  }, [value]);
+  }, [value])
 
   useEffect(() => {
-    setValue && setValue(name, inputValue);
-  }, [setValue, name, inputValue]);
+    setValue && setValue(name, inputValue)
+  }, [setValue, name, inputValue])
 
   const input = (
     <TextField
@@ -71,30 +71,33 @@ const CommonFormTextField = ({
       name={name}
       type={type}
       disabled={disabled}
-      size="small"
+      size='small'
       inputProps={{
         ...inputProps,
-        'aria-label': inputProps && inputProps['aria-label'] ? inputProps['aria-label'] : name,
+        'aria-label':
+          inputProps && inputProps['aria-label']
+            ? inputProps['aria-label']
+            : name,
         style: {
           /** TODO: fix this spacing */
-          marginLeft: !Icon ? 20 : 0,
-        },
+          marginLeft: !Icon ? 20 : 0
+        }
       }}
       InputProps={{
         ...props.InputProps,
         startAdornment: Icon && (
-          <InputAdornment position="start">
-            <Icon color="action" />
+          <InputAdornment position='start'>
+            <Icon color='action' />
           </InputAdornment>
         ),
         endAdornment: errors[name] && (
-          <InputAdornment position="end">
-            <Error color="secondary" style={{ fontSize: 12 }} />
+          <InputAdornment position='end'>
+            <Error color='secondary' style={{ fontSize: 12 }} />
           </InputAdornment>
-        ),
+        )
       }}
     />
-  );
+  )
 
   return tooltip ? (
     <Tooltip title={tooltip} enterTouchDelay={300}>
@@ -102,8 +105,8 @@ const CommonFormTextField = ({
     </Tooltip>
   ) : (
     input
-  );
-};
+  )
+}
 
 CommonFormTextField.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
@@ -115,8 +118,8 @@ CommonFormTextField.propTypes = {
   register: PropTypes.func,
   type: PropTypes.string,
   className: PropTypes.string,
-  error: PropTypes.bool,
-};
+  error: PropTypes.bool
+}
 
 CommonFormTextField.defaultProps = {
   errors: {},
@@ -126,7 +129,7 @@ CommonFormTextField.defaultProps = {
   label: '',
   type: 'text',
   className: '',
-  error: false,
-};
+  error: false
+}
 
-export default CommonFormTextField;
+export default CommonFormTextField
