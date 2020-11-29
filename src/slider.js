@@ -103,11 +103,6 @@ const CommonSlider = ({
         }
         label={label}
       />
-      {text && (
-        <Typography variant='caption' style={{ marginLeft: '8px' }}>
-          {text}
-        </Typography>
-      )}
       {errors && errors[name] && (
         <FormHelperText error>{errors[name].message}</FormHelperText>
       )}
