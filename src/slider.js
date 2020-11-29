@@ -7,10 +7,13 @@ import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import FormHelperText from '@material-ui/core/FormHelperText'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 // Styles
-import useStyles from './styles'
+const useStyles = makeStyles({
+  root: {
+    width: 300
+  }
+})
 
 const PrettoSlider = withStyles({
   root: {
@@ -63,13 +66,11 @@ const CommonSlider = ({
   ...props
 }) => {
   const classes = useStyles()
-  const [inputValue, setInputValue] = useState(value || '')
+  const [inputValue, setInputValue] = useState(value || 0)
 
-  const handleChange = (evt) => {
-    setInputValue(evt.target.value)
-    if (onChange) {
-      onChange(evt.target.value, getValues)
-    }
+  const handleChange = (event, newValue) => {
+    setInputValue(newValue)
+    onChange(evt.target.value, newValue)
   }
 
   useEffect(() => {
@@ -88,20 +89,17 @@ const CommonSlider = ({
 
   return (
     <Box flexDirection='row' display='flex' className={classes.root}>
-      <FormControlLabel
-        labelPlacement='end'
-        control={
-          <PrettoSlider
-            {...props}
-            aria-labelledby='continuous-slider'
-            getAriaValueText={value}
-            valueLabelDisplay='auto'
-            value={inputValue}
-            name={name}
-            onChange={handleChange}
-          />
-        }
-        label={label}
+      <Typography id='range-slider' gutterBottom>
+        {label || name}
+      </Typography>
+      <PrettoSlider
+        {...props}
+        aria-labelledby='continuous-slider'
+        getAriaValueText={value}
+        valueLabelDisplay='auto'
+        value={inputValue}
+        name={name}
+        onChange={handleChange}
       />
       {errors && errors[name] && (
         <FormHelperText error>{errors[name].message}</FormHelperText>
